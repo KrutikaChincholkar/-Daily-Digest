@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Daily Digest Builder</title>
+<style>
+:root{--bg:#faf7f2;--card:#fff;--ink:#1f1b16;--mute:#7a7167;--line:#e8e1d6;--accent:#d9622b;--accent-ink:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#17140f;--card:#211d17;--ink:#f3ede3;--mute:#a1978a;--line:#342e25;--accent:#ee8452;--accent-ink:#1a120b}}
+:root[data-theme="dark"]{--bg:#17140f;--card:#211d17;--ink:#f3ede3;--mute:#a1978a;--line:#342e25;--accent:#ee8452;--accent-ink:#1a120b}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Georgia,'Times New Roman',serif}
+.wrap{max-width:1040px;margin:0 auto;padding:28px 18px 60px}
+h1{font-size:clamp(28px,5vw,44px);margin:0 0 6px;letter-spacing:-.02em}
+.sub{color:var(--mute);margin:0 0 26px;font-family:system-ui,sans-serif;font-size:15px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:800px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px}
+label,.ui{font-family:system-ui,sans-serif}
+.row{display:flex;gap:12px;flex-wrap:wrap}
+.row>div{flex:1;min-width:140px}
+.row label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);margin-bottom:4px}
+input[type=text],input[type=time],textarea{width:100%;font:inherit;font-size:15px;padding:9px 11px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--ink)}
+textarea{min-height:76px;resize:vertical;margin-top:10px}
+.mod-head{display:flex;align-items:center;justify-content:space-between;font-family:system-ui,sans-serif;font-weight:600}
+.mod-head span{display:flex;gap:9px;align-items:center}
+.sw{appearance:none;width:40px;height:23px;border-radius:99px;background:var(--line);position:relative;cursor:pointer;transition:.2s;margin:0}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:17px;height:17px;border-radius:50%;background:#fff;transition:.2s}
+.sw:checked{background:var(--accent)}.sw:checked::after{left:20px}
+.mod.off textarea{display:none}
+.mod.off{opacity:.55}
+.preview{position:sticky;top:16px;align-self:start}
+.msg{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;box-shadow:0 8px 30px rgba(0,0,0,.06)}
+.msg .meta{font-family:system-ui,sans-serif;font-size:12px;color:var(--mute);text-transform:uppercase;letter-spacing:.08em}
+.msg h2{font-size:26px;margin:4px 0 2px}
+.msg h3{font-family:system-ui,sans-serif;font-size:13px;text-transform:uppercase;letter-spacing:.07em;color:var(--accent);margin:18px 0 6px}
+.msg ul{margin:0;padding-left:20px}.msg li{margin:3px 0}
+.empty{color:var(--mute);font-style:italic}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+button{font:600 14px system-ui,sans-serif;padding:10px 16px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+button.pri{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
+.note{font:13px system-ui,sans-serif;color:var(--mute);margin-top:10px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>☀️ Daily Digest</h1>
+  <p class="sub">Pick what you check every morning, set a time, and get one tidy message.</p>
+  <div class="grid">
+    <div>
+      <div class="card"><div class="row">
+        <div><label for="name">Your name</label><input type="text" id="name" placeholder="Alex"></div>
+        <div><label for="time">Deliver at</label><input type="time" id="time" value="07:30"></div>
+      </div></div>
+      <div id="mods"></div>
+    </div>
+    <div class="preview">
+      <div class="msg" id="msg"></div>
+      <div class="btns">
+        <button class="pri" id="copyDigest">Copy digest</button>
+        <button id="copyPrompt">Copy scheduled-task prompt</button>
+        <button id="notify">🔔 Remind me</button>
+      </div>
+      <p class="note" id="status">The prompt works in any assistant that supports scheduled tasks. “Remind me” sends a browser notification at your time while this page is open.</p>
+    </div>
+  </div>
+</div>
+<script>
+const MODS=[
+ {id:"calendar",icon:"📅",title:"Calendar",ph:"9:00 Team standup\n13:00 Lunch with Sam",on:true},
+ {id:"workout",icon:"🏋️",title:"Workout classes",ph:"18:00 Spin class\n19:30 Yoga flow",on:true},
+ {id:"dinner",icon:"🍝",title:"Dinner ideas",ph:"Lemon chicken traybake\nMushroom risotto",on:true},
+ {id:"weather",icon:"🌤️",title:"Weather",ph:"14°C, light rain after 3pm - take a jacket",on:false},
+ {id:"tasks",icon:"✅",title:"Top priorities",ph:"Send invoice\nBook dentist",on:false},
+ {id:"spark",icon:"✨",title:"Daily spark",ph:"One small thing today is enough.",on:false}
+];
+let S={name:"",time:"07:30",mods:{}};
+MODS.forEach(m=>S.mods[m.id]={on:m.on,text:""});
+try{const s=JSON.parse(localStorage.getItem("digest")||"null");if(s)S=Object.assign(S,s)}catch(e){}
+const $=id=>document.getElementById(id);
+function save(){try{localStorage.setItem("digest",JSON.stringify(S))}catch(e){}}
+function lines(t){return t.split("\n").map(x=>x.trim()).filter(Boolean)}
+function greet(){const h=new Date().getHours();return h<12?"Good morning":h<18?"Good afternoon":"Good evening"}
+
+function buildMods(){
+ $("mods").innerHTML="";
+ MODS.forEach(m=>{
+  const st=S.mods[m.id]||(S.mods[m.id]={on:m.on,text:""});
+  const d=document.createElement("div");d.className="card mod"+(st.on?"":" off");
+  d.innerHTML=`<div class="mod-head"><span>${m.icon} ${m.title}</span><input type="checkbox" class="sw" ${st.on?"checked":""} aria-label="Toggle ${m.title}"></div><textarea placeholder="${m.ph.replace(/\n/g,"&#10;")}"></textarea>`;
+  const ta=d.querySelector("textarea");ta.value=st.text;
+  d.querySelector(".sw").onchange=e=>{st.on=e.target.checked;d.classList.toggle("off",!st.on);render()};
+  ta.oninput=e=>{st.text=e.target.value;render()};
+  $("mods").appendChild(d);
+ });
+}
+function digestText(){
+ const date=new Date().toLocaleDateString(undefined,{weekday:"long",day:"numeric",month:"long"});
+ let t=`${greet()}${S.name?", "+S.name:""}! ☀️\n${date}\n`;
+ MODS.filter(m=>S.mods[m.id].on).forEach(m=>{
+  const l=lines(S.mods[m.id].text);
+  t+=`\n${m.icon} ${m.title.toUpperCase()}\n`+(l.length?l.map(x=>"• "+x).join("\n"):"• (nothing yet)")+"\n";
+ });
+ return t.trim();
+}
+function esc(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function render(){
+ const date=new Date().toLocaleDateString(undefined,{weekday:"long",day:"numeric",month:"long"});
+ let h=`<div class="meta">Arrives ${S.time||"--:--"} · ${date}</div><h2>${greet()}${S.name?", "+esc(S.name):""}!</h2>`;
+ const act=MODS.filter(m=>S.mods[m.id].on);
+ if(!act.length)h+=`<p class="empty">Switch on a section to start.</p>`;
+ act.forEach(m=>{
+  const l=lines(S.mods[m.id].text);
+  h+=`<h3>${m.icon} ${m.title}</h3>`+(l.length?`<ul>${l.map(x=>`<li>${esc(x)}</li>`).join("")}</ul>`:`<p class="empty">Add items on the left…</p>`);
+ });
+ $("msg").innerHTML=h;save();
+}
+function say(t){$("status").textContent=t}
+async function copy(t,ok){try{await navigator.clipboard.writeText(t);say(ok)}catch(e){say("Couldn't copy automatically - select the text and copy manually.")}}
+
+$("name").value=S.name;$("time").value=S.time;
+$("name").oninput=e=>{S.name=e.target.value;render()};
+$("time").oninput=e=>{S.time=e.target.value;render()};
+$("copyDigest").onclick=()=>copy(digestText(),"Digest copied ✓");
+$("copyPrompt").onclick=()=>{
+ const names=MODS.filter(m=>S.mods[m.id].on).map(m=>m.title.toLowerCase()).join(", ")||"my schedule";
+ copy(`Every day at ${S.time}, send me a Daily Digest${S.name?" for "+S.name:""}. Use my connected apps to gather: ${names}. Format it as a short, friendly morning message with a greeting, today's date, and one bulleted section per topic. Keep it under 150 words.`,"Task prompt copied ✓ - paste it into a scheduled task.");
+};
+let timer=null;
+$("notify").onclick=async()=>{
+ if(!("Notification" in window)){say("Notifications aren't supported in this browser.");return}
+ const p=await Notification.requestPermission();
+ if(p!=="granted"){say("Notifications were blocked.");return}
+ clearInterval(timer);
+ timer=setInterval(()=>{
+  const n=new Date(),hm=String(n.getHours()).padStart(2,"0")+":"+String(n.getMinutes()).padStart(2,"0");
+  if(hm===S.time&&n.getSeconds()<30){new Notification("Your Daily Digest",{body:digestText().slice(0,180)});}
+ },20000);
+ say(`Reminder set for ${S.time} - keep this tab open.`);
+};
+buildMods();render();
+</script>
+</body>
+</html>
