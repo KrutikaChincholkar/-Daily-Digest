@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Morning — Personal Daily Brief</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap"
+    rel="stylesheet"
+  >
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="C:\Users\kruti\OneDrive\Desktop\Hand\DAILY\style.css" />
+</head>
+
+<body>
+
+  <!-- =========================
+       MOBILE HEADER
+  ========================== -->
+  <header class="mobile-header">
+    <button class="icon-btn" id="mobileMenuBtn" aria-label="Open menu">
+      <i data-lucide="menu"></i>
+    </button>
+
+    <div class="mobile-logo">
+      <span class="logo-dot"></span>
+      <span>Morning</span>
+    </div>
+
+    <button class="icon-btn" id="mobileSettingsBtn" aria-label="Settings">
+      <i data-lucide="settings"></i>
+    </button>
+  </header>
+
+
+  <!-- =========================
+       SIDEBAR
+  ========================== -->
+  <aside class="sidebar" id="sidebar">
+
+    <div class="brand">
+      <div class="brand-mark">
+        <span></span>
+      </div>
+
+      <div>
+        <h2>Morning</h2>
+        <p>Daily brief</p>
+      </div>
+    </div>
+
+    <nav class="main-nav">
+
+      <a href="#overview" class="nav-item active">
+        <i data-lucide="layout-dashboard"></i>
+        <span>Overview</span>
+      </a>
+
+      <a href="#schedule" class="nav-item">
+        <i data-lucide="calendar-days"></i>
+        <span>Schedule</span>
+      </a>
+
+      <a href="#wellness" class="nav-item">
+        <i data-lucide="heart-pulse"></i>
+        <span>Wellness</span>
+      </a>
+
+      <a href="#meals" class="nav-item">
+        <i data-lucide="utensils"></i>
+        <span>Meals</span>
+      </a>
+
+      <a href="#settings" class="nav-item">
+        <i data-lucide="settings-2"></i>
+        <span>Settings</span>
+      </a>
+
+    </nav>
+
+
+    <div class="sidebar-bottom">
+
+      <div class="delivery-mini">
+        <div class="delivery-icon">
+          <i data-lucide="bell"></i>
+        </div>
+
+        <div>
+          <span>Morning delivery</span>
+          <strong id="sidebarDeliveryTime">07:30 AM</strong>
+        </div>
+      </div>
+
+      <button class="profile-mini">
+        <div class="avatar">K</div>
+
+        <div class="profile-info">
+          <strong>Krutika</strong>
+          <span>Personal dashboard</span>
+        </div>
+
+        <i data-lucide="chevron-right"></i>
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- =========================
+       MAIN CONTENT
+  ========================== -->
+  <main class="main-content" id="mainContent">
+
+    <!-- HERO -->
+    <section class="hero" id="overview">
+
+      <div class="hero-left">
+
+        <div class="eyebrow">
+          <span class="status-dot"></span>
+          YOUR MORNING BRIEF
+        </div>
+
+        <h1 id="greeting">Good morning, Krutika.</h1>
+
+        <p class="hero-subtitle">
+          Here’s everything you need to start your day with clarity.
+        </p>
+
+        <div class="hero-meta">
+          <div>
+            <i data-lucide="calendar"></i>
+            <span id="currentDate">Monday, 5 October 2026</span>
+          </div>
+
+          <div>
+            <i data-lucide="clock-3"></i>
+            <span id="liveTime">07:30 AM</span>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="hero-actions">
+
+        <button class="round-action" id="refreshBrief" title="Refresh brief">
+          <i data-lucide="refresh-cw"></i>
+        </button>
+
+        <button class="round-action" id="settingsBtn" title="Settings">
+          <i data-lucide="sliders-horizontal"></i>
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         TOP GRID
+    ========================== -->
+    <section class="top-grid">
+
+      <!-- WEATHER -->
+      <article class="card weather-card">
+
+        <div class="card-header">
+          <div>
+            <span class="card-label">TODAY</span>
+            <h3>York, UK</h3>
+          </div>
+
+          <div class="weather-icon">
+            <i data-lucide="cloud-sun"></i>
+          </div>
+        </div>
+
+        <div class="weather-main">
+
+          <div class="temperature">
+            12<span>°</span>
+          </div>
+
+          <div class="weather-description">
+            <strong>Partly cloudy</strong>
+            <span>Feels like 11°</span>
+          </div>
+
+        </div>
+
+        <div class="weather-details">
+
+          <div>
+            <i data-lucide="cloud-rain"></i>
+            <span>20% rain</span>
+          </div>
+
+          <div>
+            <i data-lucide="wind"></i>
+            <span>14 km/h</span>
+          </div>
+
+          <div>
+            <i data-lucide="sunset"></i>
+            <span>18:35</span>
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- DAILY FOCUS -->
+      <article class="card focus-card">
+
+        <div class="card-header">
+
+          <span class="card-label">DAILY FOCUS</span>
+
+          <button
+            class="small-icon-btn"
+            id="newQuoteBtn"
+            title="New focus"
+          >
+            <i data-lucide="shuffle"></i>
+          </button>
+
+        </div>
+
+        <div class="focus-content">
+
+          <i data-lucide="quote" class="quote-icon"></i>
+
+          <p id="quoteText">
+            Small progress is still progress. Focus on what matters today.
+          </p>
+
+        </div>
+
+        <div class="focus-footer">
+          <span id="quoteAuthor">— Daily reminder</span>
+        </div>
+
+      </article>
+
+
+      <!-- PROGRESS -->
+      <article class="card progress-card">
+
+        <div class="card-header">
+
+          <span class="card-label">TODAY'S PROGRESS</span>
+
+          <span class="progress-number" id="progressNumber">
+            0%
+          </span>
+
+        </div>
+
+        <div class="progress-ring-wrapper">
+
+          <div class="progress-ring">
+
+            <svg viewBox="0 0 120 120">
+
+              <circle
+                class="progress-track"
+                cx="60"
+                cy="60"
+                r="50"
+              />
+
+              <circle
+                class="progress-value"
+                id="progressCircle"
+                cx="60"
+                cy="60"
+                r="50"
+              />
+
+            </svg>
+
+            <div class="progress-center">
+              <strong id="progressCenter">0%</strong>
+              <span>complete</span>
+            </div>
+
+          </div>
+
+        </div>
+
+        <p class="progress-text">
+          Complete your schedule and habits to move this up.
+        </p>
+
+      </article>
+
+    </section>
+
+
+    <!-- =========================
+         SCHEDULE
+    ========================== -->
+    <section class="section" id="schedule">
+
+      <div class="section-heading">
+
+        <div>
+          <span class="section-label">YOUR DAY</span>
+          <h2>Schedule</h2>
+        </div>
+
+        <button class="outline-btn" id="addEventBtn">
+          <i data-lucide="plus"></i>
+          Add event
+        </button>
+
+      </div>
+
+
+      <div class="schedule-card card">
+
+        <div class="timeline" id="timeline">
+
+          <div class="timeline-item">
+
+            <div class="timeline-time">
+              08:00
+            </div>
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-content">
+
+              <div>
+                <span class="event-category personal">
+                  PERSONAL
+                </span>
+
+                <h3>Morning routine</h3>
+
+                <p>
+                  Breakfast, get ready and plan your priorities.
+                </p>
+              </div>
+
+              <label class="check-wrapper">
+                <input type="checkbox" class="timeline-check">
+                <span class="custom-check">
+                  <i data-lucide="check"></i>
+                </span>
+              </label>
+
+            </div>
+
+          </div>
+
+
+          <div class="timeline-item">
+
+            <div class="timeline-time">
+              09:00
+            </div>
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-content">
+
+              <div>
+                <span class="event-category university">
+                  UNIVERSITY
+                </span>
+
+                <h3>HCI Lecture</h3>
+
+                <p>
+                  Human-centred interactive technologies.
+                </p>
+              </div>
+
+              <label class="check-wrapper">
+                <input type="checkbox" class="timeline-check">
+                <span class="custom-check">
+                  <i data-lucide="check"></i>
+                </span>
+              </label>
+
+            </div>
+
+          </div>
+
+
+          <div class="timeline-item">
+
+            <div class="timeline-time">
+              13:00
+            </div>
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-content">
+
+              <div>
+                <span class="event-category social">
+                  SOCIAL
+                </span>
+
+                <h3>Lunch with a friend</h3>
+
+                <p>
+                  Take a proper break away from your desk.
+                </p>
+              </div>
+
+              <label class="check-wrapper">
+                <input type="checkbox" class="timeline-check">
+                <span class="custom-check">
+                  <i data-lucide="check"></i>
+                </span>
+              </label>
+
+            </div>
+
+          </div>
+
+
+          <div class="timeline-item">
+
+            <div class="timeline-time">
+              15:00
+            </div>
+
+            <div class="timeline-dot"></div>
+
+            <div class="timeline-content">
+
+              <div>
+                <span class="event-category career">
+                  CAREER
+                </span>
+
+                <h3>Portfolio hour</h3>
+
+                <p>
+                  Work on one UX case study or portfolio improvement.
+                </p>
+              </div>
+
+              <label class="check-wrapper">
+                <input type="checkbox" class="timeline-check">
+                <span class="custom-check">
+                  <i data-lucide="check"></i>
+                </span>
+              </label>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         CALENDAR
+    ========================== -->
+    <section class="section">
+
+      <div class="section-heading">
+
+        <div>
+          <span class="section-label">PLAN AHEAD</span>
+          <h2>Calendar</h2>
+        </div>
+
+        <div class="calendar-controls">
+
+          <button class="small-icon-btn" id="prevMonth">
+            <i data-lucide="chevron-left"></i>
+          </button>
+
+          <button class="today-btn" id="todayBtn">
+            Today
+          </button>
+
+          <button class="small-icon-btn" id="nextMonth">
+            <i data-lucide="chevron-right"></i>
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <div class="card calendar-card">
+
+        <div class="calendar-header">
+
+          <h3 id="calendarMonth">
+            October 2026
+          </h3>
+
+          <div class="calendar-legend">
+
+            <span>
+              <i class="legend-dot university-dot"></i>
+              University
+            </span>
+
+            <span>
+              <i class="legend-dot personal-dot"></i>
+              Personal
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="calendar-weekdays">
+
+          <span>Mon</span>
+          <span>Tue</span>
+          <span>Wed</span>
+          <span>Thu</span>
+          <span>Fri</span>
+          <span>Sat</span>
+          <span>Sun</span>
+
+        </div>
+
+        <div class="calendar-grid" id="calendarGrid"></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         WELLNESS
+    ========================== -->
+    <section class="section" id="wellness">
+
+      <div class="section-heading">
+
+        <div>
+          <span class="section-label">TAKE CARE</span>
+          <h2>Wellness</h2>
+        </div>
+
+      </div>
+
+
+      <div class="wellness-grid">
+
+        <!-- WORKOUT -->
+        <article class="card workout-card">
+
+          <div class="card-header">
+
+            <div>
+              <span class="card-label">TODAY'S WORKOUT</span>
+              <h3 id="workoutName">
+                Full Body Strength
+              </h3>
+            </div>
+
+            <button class="small-icon-btn" id="shuffleWorkout">
+              <i data-lucide="shuffle"></i>
+            </button>
+
+          </div>
+
+          <div class="workout-info">
+
+            <div>
+              <i data-lucide="clock"></i>
+              <span id="workoutDuration">35 min</span>
+            </div>
+
+            <div>
+              <i data-lucide="zap"></i>
+              <span id="workoutLevel">Moderate</span>
+            </div>
+
+          </div>
+
+          <button class="primary-btn" id="startWorkout">
+            <i data-lucide="play"></i>
+            Start workout
+          </button>
+
+        </article>
+
+
+        <!-- HABITS -->
+        <article class="card habits-card">
+
+          <div class="card-header">
+
+            <div>
+              <span class="card-label">DAILY HABITS</span>
+              <h3>Small wins</h3>
+            </div>
+
+            <i data-lucide="sparkles" class="card-heading-icon"></i>
+
+          </div>
+
+
+          <div class="habit-list">
+
+            <label class="habit-item">
+
+              <input type="checkbox" class="habit-check">
+
+              <span class="habit-checkbox">
+                <i data-lucide="check"></i>
+              </span>
+
+              <span>Drink enough water</span>
+
+            </label>
+
+
+            <label class="habit-item">
+
+              <input type="checkbox" class="habit-check">
+
+              <span class="habit-checkbox">
+                <i data-lucide="check"></i>
+              </span>
+
+              <span>10-minute walk</span>
+
+            </label>
+
+
+            <label class="habit-item">
+
+              <input type="checkbox" class="habit-check">
+
+              <span class="habit-checkbox">
+                <i data-lucide="check"></i>
+              </span>
+
+              <span>Read for 20 minutes</span>
+
+            </label>
+
+
+            <label class="habit-item">
+
+              <input type="checkbox" class="habit-check">
+
+              <span class="habit-checkbox">
+                <i data-lucide="check"></i>
+              </span>
+
+              <span>No phone during breakfast</span>
+
+            </label>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         MEALS
+    ========================== -->
+    <section class="section" id="meals">
+
+      <div class="section-heading">
+
+        <div>
+          <span class="section-label">FOOD</span>
+          <h2>Meals</h2>
+        </div>
+
+        <button class="outline-btn" id="shuffleMeals">
+          <i data-lucide="shuffle"></i>
+          Shuffle ideas
+        </button>
+
+      </div>
+
+
+      <div class="meal-grid">
+
+        <article class="card meal-card">
+
+          <div class="meal-icon breakfast-icon">
+            <i data-lucide="coffee"></i>
+          </div>
+
+          <div class="meal-content">
+
+            <span class="card-label">BREAKFAST</span>
+
+            <h3 id="breakfastName">
+              Greek yoghurt bowl
+            </h3>
+
+            <p id="breakfastDescription">
+              Greek yoghurt, berries, banana, granola and honey.
+            </p>
+
+          </div>
+
+          <div class="meal-arrow">
+            <i data-lucide="arrow-up-right"></i>
+          </div>
+
+        </article>
+
+
+        <article class="card meal-card">
+
+          <div class="meal-icon dinner-icon">
+            <i data-lucide="chef-hat"></i>
+          </div>
+
+          <div class="meal-content">
+
+            <span class="card-label">DINNER</span>
+
+            <h3 id="dinnerName">
+              Creamy tomato pasta
+            </h3>
+
+            <p id="dinnerDescription">
+              Pasta with tomatoes, garlic, herbs and parmesan.
+            </p>
+
+          </div>
+
+          <div class="meal-arrow">
+            <i data-lucide="arrow-up-right"></i>
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         HEADLINES
+    ========================== -->
+    <section class="section">
+
+      <div class="section-heading">
+
+        <div>
+          <span class="section-label">STAY INFORMED</span>
+          <h2>Morning headlines</h2>
+        </div>
+
+        <span class="updated-label">
+          Updated this morning
+        </span>
+
+      </div>
+
+
+      <div class="card headlines-card">
+
+        <article class="headline">
+
+          <div class="headline-number">01</div>
+
+          <div>
+            <span class="headline-category">
+              TECHNOLOGY
+            </span>
+
+            <h3>
+              New developments in human-centred technology
+            </h3>
+
+            <p>
+              A quick sample headline for your morning information feed.
+            </p>
+          </div>
+
+          <i data-lucide="arrow-up-right"></i>
+
+        </article>
+
+
+        <article class="headline">
+
+          <div class="headline-number">02</div>
+
+          <div>
+            <span class="headline-category">
+              DESIGN
+            </span>
+
+            <h3>
+              Trends shaping modern digital experiences
+            </h3>
+
+            <p>
+              A short sample story that can later be replaced with live news.
+            </p>
+          </div>
+
+          <i data-lucide="arrow-up-right"></i>
+
+        </article>
+
+
+        <article class="headline">
+
+          <div class="headline-number">03</div>
+
+          <div>
+            <span class="headline-category">
+              YORK
+            </span>
+
+            <h3>
+              What's happening around the city today
+            </h3>
+
+            <p>
+              Local information can be connected to a live news feed later.
+            </p>
+          </div>
+
+          <i data-lucide="arrow-up-right"></i>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SETTINGS
+    ========================== -->
+    <section class="section" id="settings">
+
+      <div class="section-heading">
+
+        <div>
+          <span class="section-label">AUTOMATION</span>
+          <h2>Morning delivery</h2>
+        </div>
+
+      </div>
+
+
+      <div class="card settings-card">
+
+        <div class="setting-row">
+
+          <div class="setting-info">
+
+            <div class="setting-icon">
+              <i data-lucide="clock-3"></i>
+            </div>
+
+            <div>
+              <strong>Delivery time</strong>
+              <p>
+                Choose when your morning brief should be prepared.
+              </p>
+            </div>
+
+          </div>
+
+          <input
+            type="time"
+            id="deliveryTime"
+            value="07:30"
+          />
+
+        </div>
+
+
+        <!-- APPEARANCE -->
+        <div class="setting-row">
+
+          <div class="setting-info">
+
+            <div class="setting-icon">
+              <i data-lucide="palette"></i>
+            </div>
+
+            <div>
+              <strong>Appearance</strong>
+
+              <p>
+                Choose how your morning dashboard looks.
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="theme-toggle">
+
+            <button
+              id="lightModeBtn"
+              class="theme-btn active"
+            >
+              <i data-lucide="sun"></i>
+              <span>Light</span>
+            </button>
+
+            <button
+              id="darkModeBtn"
+              class="theme-btn"
+            >
+              <i data-lucide="moon"></i>
+              <span>Dark</span>
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="setting-row">
+
+          <div class="setting-info">
+
+            <div class="setting-icon">
+              <i data-lucide="mail"></i>
+            </div>
+
+            <div>
+              <strong>Morning message</strong>
+              <p>
+                Include the full daily brief.
+              </p>
+            </div>
+
+          </div>
+
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span></span>
+          </label>
+
+        </div>
+
+
+        <div class="setting-row">
+
+          <div class="setting-info">
+
+            <div class="setting-icon">
+              <i data-lucide="cloud-sun"></i>
+            </div>
+
+            <div>
+              <strong>Weather</strong>
+              <p>
+                Show today's weather in your brief.
+              </p>
+            </div>
+
+          </div>
+
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span></span>
+          </label>
+
+        </div>
+
+
+        <div class="setting-row">
+
+          <div class="setting-info">
+
+            <div class="setting-icon">
+              <i data-lucide="newspaper"></i>
+            </div>
+
+            <div>
+              <strong>Headlines</strong>
+              <p>
+                Include your selected morning news.
+              </p>
+            </div>
+
+          </div>
+
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span></span>
+          </label>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <footer class="footer">
+
+      <div>
+        <span class="logo-dot"></span>
+        Morning
+      </div>
+
+      <p>
+        Your personal start to the day.
+      </p>
+
+    </footer>
+
+  </main>
+
+
+  <!-- =========================
+       SETTINGS MODAL
+  ========================== -->
+  <div class="modal-overlay" id="settingsModal">
+
+    <div class="modal">
+
+      <div class="modal-header">
+
+        <div>
+          <span class="section-label">SETTINGS</span>
+          <h2>Personalise your morning</h2>
+        </div>
+
+        <button class="icon-btn" id="closeModal">
+          <i data-lucide="x"></i>
+        </button>
+
+      </div>
+
+
+      <div class="modal-body">
+
+        <div class="modal-setting">
+
+          <div>
+            <strong>Delivery time</strong>
+            <p>
+              When should your daily brief be prepared?
+            </p>
+          </div>
+
+          <input
+            type="time"
+            id="modalDeliveryTime"
+            value="07:30"
+          />
+
+        </div>
+
+
+        <div class="modal-setting">
+
+          <div>
+            <strong>Theme</strong>
+            <p>
+              Switch between light and dark mode.
+            </p>
+          </div>
+
+          <div class="theme-toggle">
+
+            <button
+              class="theme-btn modal-light-btn"
+              id="modalLightBtn"
+            >
+              <i data-lucide="sun"></i>
+              Light
+            </button>
+
+            <button
+              class="theme-btn modal-dark-btn"
+              id="modalDarkBtn"
+            >
+              <i data-lucide="moon"></i>
+              Dark
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="modal-footer">
+
+        <button class="outline-btn" id="cancelModal">
+          Cancel
+        </button>
+
+        <button class="primary-btn" id="saveSettings">
+          <i data-lucide="check"></i>
+          Save settings
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- TOAST -->
+  <div class="toast" id="toast">
+
+    <i data-lucide="check-circle"></i>
+
+    <span id="toastMessage">
+      Done
+    </span>
+
+  </div>
+
+
+  <!-- JavaScript -->
+  <script src="C:\Users\kruti\OneDrive\Desktop\Hand\DAILY\app.js"></script>
+
+</body>
+</html>
